@@ -1,0 +1,307 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#10172b">
+<title>Beyond Earth | A Library Among the Stars</title>
+
+<style>
+:root {
+  --night: #10172b;
+  --soft: #19233d;
+  --cream: #f3ead8;
+  --muted: #c3bdd0;
+  --gold: #d8b987;
+  --lavender: #b9aedb;
+  --line: rgba(243,234,216,.16);
+}
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  color: var(--cream);
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(116,104,160,.22), transparent 42%),
+    radial-gradient(ellipse at 90% 80%, rgba(70,91,135,.15), transparent 40%),
+    var(--night);
+  font-family: Georgia, "Times New Roman", serif;
+  line-height: 1.7;
+}
+
+main {
+  max-width: 1000px;
+  margin: auto;
+  padding: 28px 22px 65px;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  font: .78rem Arial, sans-serif;
+  letter-spacing: .1em;
+  margin-bottom: 95px;
+}
+
+.brand { color: var(--cream); }
+.nav-note { color: var(--muted); }
+
+.hero {
+  text-align: center;
+  margin-bottom: 75px;
+}
+
+.symbol {
+  font-size: 2.2rem;
+  color: var(--gold);
+  margin-bottom: 20px;
+}
+
+.eyebrow {
+  color: var(--lavender);
+  font: .73rem Arial, sans-serif;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+}
+
+h1 {
+  font-size: clamp(3.4rem, 10vw, 6.5rem);
+  line-height: 1;
+  font-weight: normal;
+  letter-spacing: -.05em;
+  margin: 22px 0;
+}
+
+.tagline {
+  color: var(--muted);
+  font-size: clamp(1.1rem, 3vw, 1.35rem);
+  max-width: 570px;
+  margin: 0 auto;
+}
+
+.intro {
+  max-width: 650px;
+  margin: 0 auto 75px;
+  text-align: center;
+  color: var(--muted);
+}
+
+.intro h2 {
+  color: var(--cream);
+  font-size: 1.8rem;
+  font-weight: normal;
+}
+
+.section-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 15px;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 13px;
+  margin-bottom: 25px;
+}
+
+.section-heading h2 {
+  font-size: 1.6rem;
+  font-weight: normal;
+  margin: 0;
+}
+
+.section-heading span {
+  color: var(--muted);
+  font: .75rem Arial, sans-serif;
+}
+
+.course-card {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  overflow: hidden;
+  background: var(--soft);
+  border: 1px solid var(--line);
+  border-radius: 20px;
+}
+
+.cover {
+  min-height: 330px;
+  background:
+    linear-gradient(to top, rgba(16,23,43,.6), transparent 70%),
+    url("assets/images/crystal-egg-cover.jpg") center / cover,
+    radial-gradient(circle at 50% 40%, #55547b, #17213c 70%);
+  display: flex;
+  align-items: flex-end;
+  padding: 25px;
+}
+
+.cover-label {
+  color: var(--cream);
+  font: .75rem Arial, sans-serif;
+  letter-spacing: .15em;
+}
+
+.course-info {
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.course-number {
+  color: var(--lavender);
+  font: .72rem Arial, sans-serif;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+}
+
+h3 {
+  font-size: 2rem;
+  font-weight: normal;
+  line-height: 1.2;
+  margin: 12px 0;
+}
+
+.description { color: var(--muted); }
+
+.details {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 15px 0 22px;
+  color: var(--muted);
+  font: .72rem Arial, sans-serif;
+}
+
+.button {
+  display: inline-block;
+  align-self: flex-start;
+  padding: 13px 22px;
+  border-radius: 30px;
+  background: var(--gold);
+  color: var(--night);
+  font: bold .87rem Arial, sans-serif;
+  text-decoration: none;
+  transition: background .2s, transform .2s;
+}
+
+.button:hover {
+  background: #e8cda4;
+  transform: translateY(-2px);
+}
+
+.coming-soon {
+  margin-top: 60px;
+  padding: 25px;
+  border: 1px dashed var(--line);
+  border-radius: 17px;
+  color: var(--muted);
+  text-align: center;
+}
+
+.coming-soon h3 {
+  font-size: 1.3rem;
+  color: var(--cream);
+}
+
+footer {
+  margin-top: 85px;
+  padding-top: 22px;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: .85rem;
+  text-align: center;
+}
+
+@media(max-width:700px) {
+  main { padding: 22px 16px 50px; }
+  nav { margin-bottom: 65px; }
+  .course-card { grid-template-columns: 1fr; }
+  .cover { min-height: 230px; }
+  .course-info { padding: 24px; }
+  .section-heading { align-items: flex-start; flex-direction: column; }
+}
+</style>
+</head>
+
+<body>
+<main>
+
+<nav>
+  <div class="brand">✦ BEYOND EARTH</div>
+  <div class="nav-note">A LIBRARY AMONG THE STARS</div>
+</nav>
+
+<header class="hero">
+  <div class="symbol">✧</div>
+  <div class="eyebrow">An interactive English learning experience</div>
+  <h1>Beyond Earth</h1>
+  <p class="tagline">
+    Stories, language and little journeys into the unknown.
+  </p>
+</header>
+
+<section class="intro">
+  <h2>Welcome, curious mind.</h2>
+  <p>
+    Beyond Earth is a collection of interactive English lessons
+    inspired by literature, science fiction and the mysteries of the universe.
+  </p>
+  <p>
+    Take your time, explore each story and discover something new
+    along the way.
+  </p>
+</section>
+
+<section>
+  <div class="section-heading">
+    <h2>Your reading shelf</h2>
+    <span>AVAILABLE JOURNEYS · 01</span>
+  </div>
+
+  <article class="course-card">
+    <div class="cover">
+      <div class="cover-label">A STORY OF DISTANT WORLDS</div>
+    </div>
+
+    <div class="course-info">
+      <div class="course-number">MISSION 01 · LEVEL B1–B2</div>
+      <h3>The Crystal Egg</h3>
+
+      <p class="description">
+        What if an ordinary object could show you another world?
+        Enter a mysterious story about a curious crystal, strange signals
+        and the possibility of life beyond Earth.
+      </p>
+
+      <div class="details">
+        <span>✦ LISTENING</span>
+        <span>✦ VOCABULARY</span>
+        <span>✦ DISCUSSION</span>
+      </div>
+
+      <a class="button" href="lesson-1.html">
+        Enter the story →
+      </a>
+    </div>
+  </article>
+</section>
+
+<section class="coming-soon">
+  <div class="eyebrow">More journeys await</div>
+  <h3>The library is still growing.</h3>
+  <p>
+    New stories, new worlds and new learning adventures
+    will appear on this shelf.
+  </p>
+</section>
+
+<footer>
+  BEYOND EARTH · A little library among the stars
+</footer>
+
+</main>
+</body>
+</html>
