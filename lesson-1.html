@@ -1,0 +1,310 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#10172b">
+<title>Beyond Earth | The Listening Room</title>
+
+<style>
+:root {
+  --night: #10172b;
+  --night-soft: #19233d;
+  --night-light: #222e4b;
+  --cream: #f3ead8;
+  --muted: #c3bdd0;
+  --gold: #d8b987;
+  --lavender: #b9aedb;
+  --line: rgba(243,234,216,.16);
+  --radius: 18px;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background:
+    radial-gradient(ellipse at 80% 5%, rgba(116,104,160,.20), transparent 35%),
+    radial-gradient(ellipse at 10% 55%, rgba(70,91,135,.12), transparent 35%),
+    var(--night);
+  color: var(--cream);
+  font-family: Georgia, "Times New Roman", serif;
+  line-height: 1.7;
+}
+main {
+  max-width: 900px;
+  margin: auto;
+  padding: 28px 22px 75px;
+}
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 68px;
+  font: .78rem Arial, sans-serif;
+  letter-spacing: .08em;
+}
+.brand { color: var(--cream); }
+.nav-label { color: var(--muted); text-align: right; }
+.eyebrow {
+  color: var(--lavender);
+  text-transform: uppercase;
+  letter-spacing: .2em;
+  font: .74rem Arial, sans-serif;
+}
+h1 {
+  font-size: clamp(2.8rem, 8vw, 5rem);
+  line-height: 1.04;
+  font-weight: normal;
+  margin: 16px 0;
+  letter-spacing: -.04em;
+}
+h2 {
+  font-size: 1.8rem;
+  line-height: 1.2;
+  font-weight: normal;
+  margin: 0 0 16px;
+}
+h3 { color: var(--gold); font-weight: normal; }
+p { margin-top: 0; }
+.subtitle {
+  color: var(--muted);
+  font-size: clamp(1.05rem, 3vw, 1.25rem);
+  max-width: 650px;
+}
+.meta {
+  color: var(--muted);
+  font: .76rem Arial, sans-serif;
+  letter-spacing: .09em;
+  margin-top: 25px;
+}
+.hero { margin-bottom: 45px; }
+.panel {
+  background: rgba(25,35,61,.88);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 26px;
+  margin: 25px 0;
+}
+.note {
+  color: var(--muted);
+  font-size: .94rem;
+}
+.gold { color: var(--gold); }
+.vocabulary {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0,1fr));
+  gap: 0 28px;
+}
+.word {
+  padding: 15px 0;
+  border-bottom: 1px solid var(--line);
+}
+.word strong {
+  display: block;
+  color: var(--gold);
+  margin-bottom: 3px;
+}
+.word span { color: var(--muted); font-size: .94rem; }
+.player {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-radius: 13px;
+  background: #080d19;
+  border: 1px solid var(--line);
+}
+.player iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+.tip {
+  border-left: 3px solid var(--lavender);
+  padding: 5px 0 5px 17px;
+  color: var(--muted);
+  margin-top: 22px;
+}
+.button-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  padding: 13px 23px;
+  border-radius: 30px;
+  background: var(--gold);
+  color: var(--night);
+  text-decoration: none;
+  font: bold .9rem Arial, sans-serif;
+  transition: transform .2s, background .2s;
+}
+.button-link:hover {
+  background: #e8cda4;
+  transform: translateY(-2px);
+}
+.questions {
+  padding-left: 22px;
+}
+.questions li { padding: 5px 0; }
+footer {
+  margin-top: 70px;
+  padding-top: 20px;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: .85rem;
+  text-align: center;
+}
+@media(max-width:620px) {
+  main { padding: 22px 16px 55px; }
+  nav { margin-bottom: 48px; }
+  .panel { padding: 20px; }
+  .vocabulary { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+
+<body>
+<main>
+
+<nav>
+  <div class="brand">✦ BEYOND EARTH</div>
+  <div class="nav-label">MISSION 01 · THE LISTENING ROOM</div>
+</nav>
+
+<header class="hero">
+  <div class="eyebrow">A journey into the unknown</div>
+  <h1>The Crystal Egg</h1>
+  <p class="subtitle">
+    What if an ordinary object could show you another world?
+  </p>
+  <div class="meta">
+    LEVEL B1–B2 &nbsp;·&nbsp; LISTENING &nbsp;·&nbsp; SCIENCE FICTION
+  </div>
+</header>
+
+<section class="panel">
+  <div class="eyebrow">01 · A little introduction</div>
+  <h2>Before you listen</h2>
+
+  <p>
+    Imagine finding a strange object in an old shop. It looks like a crystal,
+    but something seems to move inside it. Would you keep it, sell it, or try
+    to discover its secret?
+  </p>
+
+  <p>
+    In this story, Mr Cave owns a curious crystal egg. When he looks into it,
+    he sees something extraordinary: another world.
+  </p>
+
+  <p class="note">
+    This is a modern audio adaptation by Paul Alvis, based on the short story
+    by H. G. Wells. The adaptation changes the original setting and several
+    elements of the plot.
+  </p>
+</section>
+
+<section>
+  <div class="eyebrow">02 · Your vocabulary notebook</div>
+  <h2>Useful expressions</h2>
+  <p class="note">
+    Take a moment to read these expressions before listening. You will use
+    them in the activities later.
+  </p>
+
+  <div class="panel vocabulary">
+    <div class="word">
+      <strong>to make a fortune</strong>
+      <span>To earn or receive a lot of money.</span>
+    </div>
+
+    <div class="word">
+      <strong>to be behind on the bills</strong>
+      <span>To have unpaid bills because you do not have enough money.</span>
+    </div>
+
+    <div class="word">
+      <strong>to dismiss something</strong>
+      <span>To decide that something is not important or not true.</span>
+    </div>
+
+    <div class="word">
+      <strong>in real time</strong>
+      <span>At the same moment that something is happening.</span>
+    </div>
+
+    <div class="word">
+      <strong>priceless</strong>
+      <span>So valuable that it is difficult or impossible to give it a price.</span>
+    </div>
+
+    <div class="word">
+      <strong>to vanish</strong>
+      <span>To disappear suddenly.</span>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="eyebrow">03 · Press play</div>
+  <h2>The Listening Room</h2>
+
+  <p>
+    Find a comfortable place, put on your headphones and listen to the story.
+    The audio is approximately 28 minutes long.
+  </p>
+
+  <div class="player">
+    <iframe
+      src="https://www.youtube.com/embed/xz4U5J2UOeg?si=4j8o0617F2I3o2op"
+      title="The Crystal Egg — audio adaptation by Paul Alvis"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      referrerpolicy="strict-origin-when-cross-origin"
+      allowfullscreen>
+    </iframe>
+  </div>
+
+  <div class="tip">
+    <strong class="gold">A listening tip</strong>
+    <p style="margin:6px 0 0">
+      You do not have to understand every word. Focus on the main events,
+      the characters and the changes in the story. If 28 minutes feels too
+      long, listen in two or three parts.
+    </p>
+  </div>
+</section>
+
+<section class="panel">
+  <div class="eyebrow">04 · A moment to reflect</div>
+  <h2>After listening</h2>
+
+  <p>
+    Before moving on, think about these questions. You will explore them
+    in more detail in Mission Control.
+  </p>
+
+  <ol class="questions">
+    <li>What exactly can Mr Cave see inside the crystal egg?</li>
+    <li>Who helps him investigate the strange object?</li>
+    <li>What happens to the signals from the other world?</li>
+    <li>Does the crystal egg make Mr Cave's life better?</li>
+  </ol>
+
+  <p class="note">
+    You do not need to write anything here. Just think about your answers.
+  </p>
+
+  <a class="button-link" href="lesson-2.html">
+    Continue to Mission Control <span>→</span>
+  </a>
+</section>
+
+<footer>
+  BEYOND EARTH · A little library among the stars
+</footer>
+
+</main>
+</body>
+</html>
