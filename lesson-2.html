@@ -1,0 +1,643 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#10172b">
+<title>Beyond Earth | Mission Control</title>
+
+<style>
+:root {
+  --night: #10172b;
+  --night-soft: #19233d;
+  --night-light: #222e4b;
+  --cream: #f3ead8;
+  --muted: #c3bdd0;
+  --gold: #d8b987;
+  --lavender: #b9aedb;
+  --line: rgba(243,234,216,.16);
+  --radius: 18px;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background:
+    radial-gradient(ellipse at 10% 0%, rgba(116,104,160,.19), transparent 35%),
+    radial-gradient(ellipse at 90% 55%, rgba(70,91,135,.12), transparent 35%),
+    var(--night);
+  color: var(--cream);
+  font-family: Georgia, "Times New Roman", serif;
+  line-height: 1.7;
+}
+main {
+  max-width: 900px;
+  margin: auto;
+  padding: 28px 22px 75px;
+}
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 65px;
+  font: .78rem Arial, sans-serif;
+  letter-spacing: .07em;
+}
+nav a { color: var(--gold); text-decoration: none; }
+.nav-label { color: var(--muted); text-align: right; }
+.eyebrow {
+  color: var(--lavender);
+  text-transform: uppercase;
+  letter-spacing: .2em;
+  font: .74rem Arial, sans-serif;
+}
+h1 {
+  font-size: clamp(2.8rem, 8vw, 4.8rem);
+  line-height: 1.04;
+  font-weight: normal;
+  margin: 16px 0;
+  letter-spacing: -.04em;
+}
+h2 {
+  font-size: 1.75rem;
+  line-height: 1.2;
+  font-weight: normal;
+  margin: 0 0 15px;
+}
+h3 { color: var(--gold); font-weight: normal; }
+p { margin-top: 0; }
+.subtitle {
+  color: var(--muted);
+  font-size: clamp(1.05rem, 3vw, 1.2rem);
+}
+.meta {
+  color: var(--muted);
+  font: .76rem Arial, sans-serif;
+  letter-spacing: .09em;
+  margin-top: 25px;
+}
+.hero { margin-bottom: 42px; }
+.panel {
+  background: rgba(25,35,61,.9);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 26px;
+  margin: 25px 0;
+}
+.task {
+  border-top: 1px solid var(--line);
+  padding-top: 22px;
+  margin-top: 23px;
+}
+.task:first-of-type {
+  border-top: 0;
+  padding-top: 0;
+  margin-top: 0;
+}
+.task h3 { margin-bottom: 8px; }
+.instruction, .note {
+  color: var(--muted);
+  font-size: .93rem;
+}
+textarea {
+  display: block;
+  width: 100%;
+  min-height: 112px;
+  resize: vertical;
+  margin-top: 13px;
+  padding: 14px 15px;
+  background: #0e1528;
+  color: var(--cream);
+  border: 1px solid rgba(243,234,216,.25);
+  border-radius: 10px;
+  font: 1rem/1.55 Arial, sans-serif;
+}
+textarea::placeholder { color: #8f91a5; }
+textarea:focus {
+  outline: 2px solid var(--lavender);
+  border-color: transparent;
+}
+button, .button-link {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  border: 0;
+  border-radius: 30px;
+  padding: 13px 21px;
+  background: var(--gold);
+  color: var(--night);
+  text-decoration: none;
+  font: bold .88rem Arial, sans-serif;
+  cursor: pointer;
+  transition: transform .2s, background .2s;
+}
+button:hover, .button-link:hover {
+  background: #e8cda4;
+  transform: translateY(-2px);
+}
+button.secondary {
+  background: transparent;
+  color: var(--cream);
+  border: 1px solid var(--line);
+}
+button.secondary:hover {
+  background: var(--night-light);
+}
+button:focus-visible, a:focus-visible {
+  outline: 2px solid var(--lavender);
+  outline-offset: 4px;
+}
+.save-indicator {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--muted);
+  font: .82rem Arial, sans-serif;
+  margin-top: 18px;
+}
+.save-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #9bc6a5;
+  flex: 0 0 auto;
+}
+.word-bank {
+  background: rgba(14,21,40,.7);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 15px 17px;
+  color: var(--muted);
+  font-size: .93rem;
+  margin: 15px 0;
+}
+.word-bank strong { color: var(--gold); }
+ol, ul { padding-left: 22px; }
+li { padding: 4px 0; }
+.report-box {
+  background: #0e1528;
+  border: 1px solid var(--line);
+  border-radius: 13px;
+  padding: 19px;
+  margin-top: 22px;
+}
+.report-box textarea {
+  min-height: 280px;
+  font-size: .92rem;
+}
+.report-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 11px;
+  margin-top: 15px;
+}
+.report-actions button, .report-actions a {
+  flex: 1 1 190px;
+}
+.report-status {
+  color: var(--lavender);
+  font: .88rem Arial, sans-serif;
+  min-height: 22px;
+  margin-top: 13px;
+}
+.progress-track {
+  height: 5px;
+  background: rgba(243,234,216,.12);
+  border-radius: 10px;
+  overflow: hidden;
+  margin-top: 12px;
+}
+.progress-fill {
+  height: 100%;
+  width: 0%;
+  background: var(--gold);
+  transition: width .25s;
+}
+footer {
+  margin-top: 70px;
+  padding-top: 20px;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: .85rem;
+  text-align: center;
+}
+@media(max-width:620px) {
+  main { padding: 22px 16px 55px; }
+  nav { margin-bottom: 48px; }
+  .panel { padding: 20px; }
+  .report-actions { flex-direction: column; }
+  .report-actions button, .report-actions a { width: 100%; }
+}
+</style>
+</head>
+
+<body>
+<main>
+
+<nav>
+  <a href="lesson-1.html">← THE LISTENING ROOM</a>
+  <div class="nav-label">MISSION 01 · MISSION CONTROL</div>
+</nav>
+
+<header class="hero">
+  <div class="eyebrow">Beyond Earth · Mission 01</div>
+  <h1>Mission Control</h1>
+  <p class="subtitle">
+    Explore the story, collect the clues and share your discoveries.
+  </p>
+  <div class="meta">
+    B1–B2 &nbsp;·&nbsp; COMPREHENSION &nbsp;·&nbsp; VOCABULARY &nbsp;·&nbsp; DISCUSSION
+  </div>
+</header>
+
+<section class="panel">
+  <div class="eyebrow">Your mission</div>
+  <h2>Welcome, explorer.</h2>
+
+  <p>
+    You have listened to <em>The Crystal Egg</em>, a modern audio adaptation
+    by Paul Alvis, based on the short story by H. G. Wells.
+  </p>
+
+  <p>
+    Complete the activities below. You can listen to the story again whenever
+    you need to check a detail.
+  </p>
+
+  <p class="instruction">
+    Write your answers in the boxes. Your work is saved automatically in
+    this browser, so you can leave the page and return later using the same
+    browser and device.
+  </p>
+
+  <div class="save-indicator">
+    <span class="save-dot"></span>
+    <span id="saveStatus">Your answers will be saved automatically.</span>
+  </div>
+
+  <div class="progress-track">
+    <div class="progress-fill" id="progressFill"></div>
+  </div>
+  <p class="note" id="progressText" style="margin:8px 0 0">0 of 9 activities started</p>
+</section>
+
+<!-- ACTIVITY 1 -->
+<section class="panel">
+  <div class="eyebrow">01 · Follow the clues</div>
+  <h2>Investigate the story</h2>
+
+  <p class="instruction">
+    Answer in complete sentences. Try to use your own words rather than
+    copying the audio transcript.
+  </p>
+
+  <div class="task">
+    <h3>1. The mysterious object</h3>
+    <p>
+      What is unusual about Mr Cave's crystal egg? What can he see inside it?
+    </p>
+    <textarea id="answer1" data-title="1. The mysterious object"
+      placeholder="Write your answer here..."></textarea>
+  </div>
+
+  <div class="task">
+    <h3>2. A helping hand</h3>
+    <p>
+      Who is Dr Terry Santos, and how does he become involved in the mystery?
+    </p>
+    <textarea id="answer2" data-title="2. A helping hand"
+      placeholder="Write your answer here..."></textarea>
+  </div>
+
+  <div class="task">
+    <h3>3. Contact with another world</h3>
+    <p>
+      What happens when the scientists begin receiving signals?
+      Describe at least two things they discover.
+    </p>
+    <textarea id="answer3" data-title="3. Contact with another world"
+      placeholder="Write your answer here..."></textarea>
+  </div>
+
+  <div class="task">
+    <h3>4. The ending</h3>
+    <p>
+      What happens to the crystal egg? How does Mr Cave's situation
+      change by the end of the story?
+    </p>
+    <textarea id="answer4" data-title="4. The ending"
+      placeholder="Write your answer here..."></textarea>
+  </div>
+</section>
+
+<!-- ACTIVITY 2 -->
+<section class="panel">
+  <div class="eyebrow">02 · Decode the language</div>
+  <h2>Words from another world</h2>
+
+  <p class="instruction">
+    Complete each sentence with the correct expression from the word bank.
+    You may need to change the form of a word.
+  </p>
+
+  <div class="word-bank">
+    <strong>Word bank:</strong><br>
+    make a fortune · behind on the bills · dismiss · in real time ·
+    priceless · vanish
+  </div>
+
+  <div class="task">
+    <p>1. Mr Cave's wife thinks they could __________ by selling the crystal egg.</p>
+    <p>2. The family is having financial problems and is __________.</p>
+    <p>3. At first, many people __________ the video as something created by AI.</p>
+    <p>4. The scientists watch events happening on the other world __________.</p>
+    <p>5. The crystal egg may be a __________ object.</p>
+    <p>6. The signals suddenly __________.</p>
+
+    <textarea id="answer5" data-title="5. Words from another world"
+      placeholder="Write your six answers here, numbered 1–6..."></textarea>
+  </div>
+</section>
+
+<!-- ACTIVITY 3 -->
+<section class="panel">
+  <div class="eyebrow">03 · Think beyond the story</div>
+  <h2>Explore the bigger picture</h2>
+
+  <p class="instruction">
+    There are no single correct answers here. Explain your ideas and support
+    them with details from the story.
+  </p>
+
+  <div class="task">
+    <h3>1. The power of social media</h3>
+    <p>
+      A schoolboy records the crystal egg and posts the video online.
+      At first, many people think it is fake. How does social media influence
+      the events in the story?
+    </p>
+    <textarea id="answer6" data-title="6. The power of social media"
+      placeholder="Write your thoughts here..."></textarea>
+  </div>
+
+  <div class="task">
+    <h3>2. A difficult decision</h3>
+    <p>
+      Mrs Cave wants to sell the crystal egg. Do you understand her decision?
+      What would you do in her situation?
+    </p>
+    <textarea id="answer7" data-title="7. A difficult decision"
+      placeholder="Write your thoughts here..."></textarea>
+  </div>
+
+  <div class="task">
+    <h3>3. What happens next?</h3>
+    <p>
+      Imagine that the signals from the other world return tomorrow.
+      What do you think will happen next? Write a short prediction.
+    </p>
+    <textarea id="answer8" data-title="8. What happens next?"
+      placeholder="Write your prediction here..."></textarea>
+  </div>
+</section>
+
+<!-- ACTIVITY 4 -->
+<section class="panel">
+  <div class="eyebrow">04 · The Common Room</div>
+  <h2>One question, many perspectives</h2>
+
+  <p>
+    Let's bring the discussion beyond the story.
+  </p>
+
+  <h3>What would be the biggest challenge if humanity discovered intelligent life on another planet?</h3>
+
+  <p class="instruction">
+    Consider communication, science, politics, religion, technology or
+    everyday life. Explain your opinion and give examples.
+  </p>
+
+  <textarea id="answer9" data-title="9. The Common Room"
+    placeholder="Share your opinion here..."></textarea>
+</section>
+
+<!-- FINAL SUBMISSION -->
+<section class="panel" id="submission">
+  <div class="eyebrow">05 · Your mission report</div>
+  <h2>Bring everything together</h2>
+
+  <p>
+    You have reached the final stage of your mission. Your answers will be
+    collected into one report. Review it before submitting your work.
+  </p>
+
+  <div class="report-box">
+    <p class="instruction">
+      Your complete report will appear here when you click the button below.
+    </p>
+
+    <button type="button" id="prepareButton">
+      Prepare my submission
+    </button>
+
+    <textarea id="reportOutput" readonly
+      aria-label="Your complete mission report"
+      placeholder="Your completed mission report will appear here..."></textarea>
+
+    <div class="report-actions">
+      <button type="button" id="copyButton">
+        Copy all answers
+      </button>
+
+      <a class="button-link"
+         href="https://vivipod.com/glorrass/beyond-earth"
+         target="_blank"
+         rel="noopener">
+        Open Beyond Earth on Vivipod →
+      </a>
+    </div>
+
+    <div class="report-status" id="reportStatus" aria-live="polite"></div>
+  </div>
+</section>
+
+<section class="panel">
+  <div class="eyebrow">Before you leave</div>
+  <h2>How to submit your work</h2>
+
+  <ol>
+    <li>Click <strong>Prepare my submission</strong> above.</li>
+    <li>Review your complete report.</li>
+    <li>Click <strong>Copy all answers</strong>.</li>
+    <li>Open Beyond Earth Space on Vivipod using the link above.</li>
+    <li>Create one new Topic for this lesson.</li>
+    <li>Use the title <strong>Beyond Earth — Mission 01: The Crystal Egg</strong>.</li>
+    <li>Paste your complete report into the Topic and publish it.</li>
+  </ol>
+
+  <p class="instruction">
+    Please submit all activities together in one Topic. You do not need to
+    create a separate Topic for every answer.
+  </p>
+
+  <p class="note">
+    Remember: your answers are saved in this browser, but they are not
+    automatically sent to your teacher. You still need to publish your
+    report on Vivipod.
+  </p>
+</section>
+
+<footer>
+  BEYOND EARTH · A little library among the stars
+</footer>
+
+</main>
+
+<script>
+(function () {
+  const STORAGE_KEY = "beyondEarth_mission01_answers";
+
+  const fields = Array.from(
+    document.querySelectorAll("textarea[data-title]")
+  );
+
+  const saveStatus = document.getElementById("saveStatus");
+  const progressFill = document.getElementById("progressFill");
+  const progressText = document.getElementById("progressText");
+  const reportOutput = document.getElementById("reportOutput");
+  const reportStatus = document.getElementById("reportStatus");
+
+  let saveTimer;
+
+  // Restore saved answers when the page opens.
+  function restoreAnswers() {
+    try {
+      const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}");
+
+      fields.forEach(field => {
+        if (typeof saved[field.id] === "string") {
+          field.value = saved[field.id];
+        }
+      });
+
+      updateProgress();
+      saveStatus.textContent = "Your saved answers have been restored.";
+    } catch (error) {
+      saveStatus.textContent = "Start writing. Your answers will be saved here.";
+    }
+  }
+
+  // Save all answers in this browser.
+  function saveAnswers() {
+    const data = {};
+
+    fields.forEach(field => {
+      data[field.id] = field.value;
+    });
+
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+      saveStatus.textContent = "All changes saved in this browser.";
+    } catch (error) {
+      saveStatus.textContent =
+        "Automatic saving is unavailable. Please keep this page open.";
+    }
+
+    updateProgress();
+  }
+
+  // Update the activity completion indicator.
+  function updateProgress() {
+    const started = fields.filter(field => field.value.trim().length > 0).length;
+    const total = fields.length;
+    const percentage = total ? (started / total) * 100 : 0;
+
+    progressFill.style.width = percentage + "%";
+    progressText.textContent = started + " of " + total + " activities started";
+  }
+
+  // Collect all responses into one report.
+  function prepareReport() {
+    const date = new Date().toLocaleDateString("en-GB");
+    let report = "BEYOND EARTH\n";
+    report += "MISSION 01 — THE CRYSTAL EGG\n";
+    report += "Mission Report\n";
+    report += "Date: " + date + "\n";
+    report += "========================================\n\n";
+
+    fields.forEach(field => {
+      const title = field.dataset.title;
+      const answer = field.value.trim();
+
+      report += title + "\n";
+      report += "----------------------------------------\n";
+      report += answer || "[No answer provided]";
+      report += "\n\n";
+    });
+
+    report += "========================================\n";
+    report += "End of mission report.";
+
+    reportOutput.value = report;
+    reportStatus.textContent =
+      "Your report is ready. Review it and copy it before opening Vivipod.";
+
+    reportOutput.scrollIntoView({
+      behavior: "smooth",
+      block: "center"
+    });
+  }
+
+  // Copy the complete report.
+  async function copyReport() {
+    if (!reportOutput.value.trim()) {
+      prepareReport();
+    }
+
+    const text = reportOutput.value;
+
+    try {
+      if (navigator.clipboard && window.isSecureContext) {
+        await navigator.clipboard.writeText(text);
+      } else {
+        reportOutput.focus();
+        reportOutput.select();
+        const copied = document.execCommand("copy");
+
+        if (!copied) throw new Error("Copy command failed");
+      }
+
+      reportStatus.textContent =
+        "Copied! Now open Vivipod and paste your complete report into one Topic.";
+    } catch (error) {
+      reportOutput.focus();
+      reportOutput.select();
+      reportStatus.textContent =
+        "Automatic copying was unavailable. Your report is selected. Use Copy on your device or keyboard.";
+    }
+  }
+
+  // Save when the learner types.
+  fields.forEach(field => {
+    field.addEventListener("input", () => {
+      saveStatus.textContent = "Saving...";
+      clearTimeout(saveTimer);
+      saveTimer = setTimeout(saveAnswers, 300);
+    });
+  });
+
+  document.getElementById("prepareButton")
+    .addEventListener("click", prepareReport);
+
+  document.getElementById("copyButton")
+    .addEventListener("click", copyReport);
+
+  restoreAnswers();
+})();
+</script>
+
+</body>
+</html>
